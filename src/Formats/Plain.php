@@ -1,16 +1,17 @@
 <?php
 
-namespace Exonet\Format;
+namespace Exonet\SslConverter\Formats;
 
-class Php implements FormatInterface
+class Plain implements FormatInterface
 {
     protected $crt;
 
     protected $key;
 
-    protected $ca;
+    protected $caBundle;
 
-    public function export(Php $certificate, array $options) : Php {
+    public function export(Plain $certificate, array $options) : Plain
+    {
         return $certificate;
     }
 
@@ -62,19 +63,19 @@ class Php implements FormatInterface
     /**
      * @return string
      */
-    public function getCa() : ?string
+    public function getCaBundle() : ?string
     {
-        return $this->ca;
+        return $this->caBundle;
     }
 
     /**
-     * @param string $ca
+     * @param $caBundle
      *
-     * @return Certificate
+     * @return Plain
      */
-    public function setCa($ca) : self
+    public function setCaBundle($caBundle) : self
     {
-        $this->ca = $ca;
+        $this->caBundle = $caBundle;
 
         return $this;
     }

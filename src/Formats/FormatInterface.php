@@ -1,10 +1,10 @@
 <?php
 
-namespace Exonet\Format;
+namespace Exonet\SslConverter\Formats;
 
 interface FormatInterface
 {
-    public function export(Php $certificate, array $options);
+    public function export(Plain $certificate, array $options);
 
-    public function getPlain() : Php;
+    public function getPlain() : Plain;
 }
