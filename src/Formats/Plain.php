@@ -36,9 +36,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * Get the crt of the certificate.
+     * Get the crt.
      *
-     * @return string The crt of the certificate.
+     * @return string The crt.
      */
     public function getCrt() : ?string
     {
@@ -60,9 +60,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * Get the key of the certificate.
+     * Get the key.
      *
-     * @return string The key of the certificate.
+     * @return string The key.
      */
     public function getKey() : ?string
     {
@@ -70,9 +70,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * Set the key of the certificate.
+     * Set the key.
      *
-     * @param string $key The key of the certificate.
+     * @param string $key The key.
      *
      * @return Plain The current instance of this class.
      */
@@ -84,9 +84,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * Get the CA bundle of the certificate.
+     * Get the CA bundle.
      *
-     * @return string The CA bundle of the certificate.
+     * @return string The CA bundle.
      */
     public function getCaBundle() : ?string
     {
@@ -94,9 +94,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * Set the CA bundle of the certificate.
+     * Set the CA bundle.
      *
-     * @param string $caBundle The CA bundle of the certificate.
+     * @param string $caBundle The CA bundle.
      *
      * @return Plain The current instance of this class.
      */
