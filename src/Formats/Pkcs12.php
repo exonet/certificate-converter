@@ -2,10 +2,14 @@
 
 namespace Exonet\SslConverter\Formats;
 
+use Exonet\SslConverter\Exceptions\InvalidResource;
 use Exonet\SslConverter\Exceptions\MissingRequiredInformation;
 
 class Pkcs12 implements FormatInterface
 {
+    /**
+     * @inheritdoc
+     */
     public function export(Plain $certificate, array $options) : string
     {
         $key = $certificate->getKey();
@@ -18,9 +22,17 @@ class Pkcs12 implements FormatInterface
         }
 
         if (!openssl_pkcs12_export($crt, $pkc12, $key, $password, ['extracerts' => $caBundle])) {
-            throw new InvalidArgumentException('Invalid certificate provided.');
+            throw new InvalidResource('Invalid certificate provided.');
         };
 
         return $pkc12;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPlain(array $options) : Plain
+    {
+        // TODO: Implement getPlain() method.
     }
 }

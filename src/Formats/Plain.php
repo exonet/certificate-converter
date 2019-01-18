@@ -4,24 +4,41 @@ namespace Exonet\SslConverter\Formats;
 
 class Plain implements FormatInterface
 {
+    /**
+     * @var string The certificate string, typically the contents of the '.crt' file.
+     */
     protected $crt;
 
+    /**
+     * @var string The private key to encrypt/decrypt the certificate typically the contents of the '.key' file.
+     */
     protected $key;
 
+    /**
+     * @var string The certificate strings of the intermediate and/or the trusted root.
+     */
     protected $caBundle;
 
+    /**
+     * @inheritdoc
+     */
     public function export(Plain $certificate, array $options) : Plain
     {
         return $certificate;
     }
 
-    public function getPlain() : self
+    /**
+     * @inheritdoc
+     */
+    public function getPlain(array $options) : self
     {
         return $this;
     }
 
     /**
-     * @return string
+     * Get the crt of the certificate.
+     *
+     * @return string The crt of the certificate.
      */
     public function getCrt() : ?string
     {
@@ -29,11 +46,13 @@ class Plain implements FormatInterface
     }
 
     /**
-     * @param string $crt
+     * Set the crt.
      *
-     * @return Certificate
+     * @param string $crt The crt to set
+     *
+     * @return Plain The current instance of this class.
      */
-    public function setCrt($crt) : self
+    public function setCrt(string $crt) : self
     {
         $this->crt = $crt;
 
@@ -41,7 +60,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * @return string
+     * Get the key of the certificate.
+     *
+     * @return string The key of the certificate.
      */
     public function getKey() : ?string
     {
@@ -49,11 +70,13 @@ class Plain implements FormatInterface
     }
 
     /**
-     * @param string $key
+     * Set the key of the certificate.
      *
-     * @return Certificate
+     * @param string $key The key of the certificate.
+     *
+     * @return Plain The current instance of this class.
      */
-    public function setKey($key) : self
+    public function setKey(string $key) : self
     {
         $this->key = $key;
 
@@ -61,7 +84,9 @@ class Plain implements FormatInterface
     }
 
     /**
-     * @return string
+     * Get the CA bundle of the certificate.
+     *
+     * @return string The CA bundle of the certificate.
      */
     public function getCaBundle() : ?string
     {
@@ -69,11 +94,13 @@ class Plain implements FormatInterface
     }
 
     /**
-     * @param $caBundle
+     * Set the CA bundle of the certificate.
      *
-     * @return Plain
+     * @param string $caBundle The CA bundle of the certificate.
+     *
+     * @return Plain The current instance of this class.
      */
-    public function setCaBundle($caBundle) : self
+    public function setCaBundle(string $caBundle) : self
     {
         $this->caBundle = $caBundle;
 

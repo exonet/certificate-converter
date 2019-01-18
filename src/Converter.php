@@ -7,17 +7,17 @@ use Exonet\SslConverter\Formats\FormatInterface;
 class Converter
 {
     /**
-     * @var FormatInterface
+     * @var FormatInterface The input format to be converted.
      */
     protected $to;
 
     /**
-     * @var FormatInterface
+     * @var FormatInterface The output format to convert to.
      */
     protected $from;
 
     /**
-     * @var array
+     * @var mixed[] Additional options that are needed to compose a certificate in a specific format.
      */
     protected $options = [
         'to' => [],
@@ -25,13 +25,14 @@ class Converter
     ];
 
     /**
-     * @param FormatInterface $input
-     * @param FormatInterface $output
-     * @param array           $options
+     * Set the format that should be converted.
      *
-     * @return mixed
+     * @param FormatInterface $from    The input format to be converted.
+     * @param mixed[]         $options Additional options that are needed to compose a certificate in a specific format.
+     *
+     * @return Converter Instance of this class.
      */
-    public function from(FormatInterface $from,  array $options = []) : self
+    public function from(FormatInterface $from, array $options = []) : self
     {
         $this->from = $from;
         $this->options['from'] = $options;
@@ -40,10 +41,12 @@ class Converter
     }
 
     /**
-     * @param FormatInterface $to
-     * @param array           $options
+     * Set the format that should be converted to.
      *
-     * @return Converter
+     * @param FormatInterface $to      The output format to convert to.
+     * @param mixed[]         $options Additional options that are needed to compose a certificate in a specific format.
+     *
+     * @return Converter Instance of this class
      */
     public function to(FormatInterface $to, array $options = []) : self
     {
@@ -54,9 +57,11 @@ class Converter
     }
 
     /**
-     * @return mixed
+     * Convert the input format to the provided output format as a string.
+     *
+     * @return string The converted format in a string that can be saved to a file.
      */
-    public function convert()
+    public function convertToString() : string
     {
         $plain = $this->from->getPlain($this->options['from']);
 
