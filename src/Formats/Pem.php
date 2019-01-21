@@ -17,7 +17,7 @@ class Pem implements FormatInterface
         $caBundle = $certificate->getCaBundle();
 
         if (!$crt || !$caBundle) {
-            throw new MissingRequiredInformation();
+            throw new MissingRequiredInformation('The following fields are required for PKCS12: CRT, CA Bundle.');
         }
 
         // If there is a key, prepend the certificate content with the key.

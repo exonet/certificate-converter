@@ -11,7 +11,7 @@ interface FormatInterface
      * Export the format to a string that can be saved to a file.
      *
      * @param Plain $certificate The plain version of the input format that should be converted.
-     * @param array $options Additional options that are needed to compose the certificate to the new format.
+     * @param array $options     Additional options that are needed to compose the certificate to the new format.
      *
      * @return string The format as a string that can be saved to a file.
      *

@@ -18,7 +18,7 @@ class Pkcs12 implements FormatInterface
         $password = isset($options['password']) ? $options['password'] : false;
 
         if (!$key || !$crt || !$caBundle || !$password) {
-            throw new MissingRequiredInformation();
+            throw new MissingRequiredInformation('The following fields are required for PKCS12: key, CRT, CA Bundle, password.');
         }
 
         if (!openssl_pkcs12_export($crt, $pkc12, $key, $password, ['extracerts' => $caBundle])) {

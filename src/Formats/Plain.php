@@ -22,9 +22,9 @@ class Plain implements FormatInterface
     /**
      * @inheritdoc
      */
-    public function export(Plain $certificate, array $options) : Plain
+    public function export(Plain $certificate, array $options) : string
     {
-        return $certificate;
+        return $certificate->getCrt().$certificate->getKey().$certificate->getCaBundle();
     }
 
     /**
@@ -50,7 +50,7 @@ class Plain implements FormatInterface
      *
      * @param string $crt The crt to set
      *
-     * @return Plain The current instance of this class.
+     * @return $this The current instance of this class.
      */
     public function setCrt(string $crt) : self
     {
@@ -74,7 +74,7 @@ class Plain implements FormatInterface
      *
      * @param string $key The key.
      *
-     * @return Plain The current instance of this class.
+     * @return $this The current instance of this class.
      */
     public function setKey(string $key) : self
     {
@@ -98,7 +98,7 @@ class Plain implements FormatInterface
      *
      * @param string $caBundle The CA bundle.
      *
-     * @return Plain The current instance of this class.
+     * @return $this The current instance of this class.
      */
     public function setCaBundle(string $caBundle) : self
     {
