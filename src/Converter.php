@@ -59,7 +59,7 @@ class Converter
     /**
      * Convert the input format to the provided output format as a string.
      *
-     * @return string The converted format in a string that can be saved to a file.
+     * @return string The converted format as a string that can be saved to a file.
      */
     public function convertToString() : string
     {
