@@ -30,7 +30,7 @@ class Converter
      * @param FormatInterface $from    The input format to be converted.
      * @param mixed[]         $options Additional options that are needed to compose a certificate in a specific format.
      *
-     * @return Converter Instance of this class.
+     * @return $this Instance of this class.
      */
     public function from(FormatInterface $from, array $options = []) : self
     {
