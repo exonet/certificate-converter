@@ -2,8 +2,6 @@
 
 namespace Exonet\SslConverter\Exceptions;
 
-use Exception;
-
-class InvalidResource extends Exception
+class InvalidResource extends SslConverterException
 {
 }
