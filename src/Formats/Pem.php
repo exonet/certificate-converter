@@ -5,19 +5,29 @@ namespace Exonet\SslConverter\Formats;
 use Exonet\SslConverter\Exceptions\InvalidResource;
 use Exonet\SslConverter\Exceptions\MissingRequiredInformation;
 
-class Pem implements FormatInterface
+class Pem extends AbstractFormat
 {
     /**
      * @inheritdoc
      */
-    public function export(Plain $certificate, array $options) : string
+    public function export() : array
     {
-        $key = $certificate->getKey();
-        $crt = $certificate->getCrt();
-        $caBundle = $certificate->getCaBundle();
+        return [
+            sprintf('%s.pem', $this->certificateName) => $this->toString(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function toString() : string
+    {
+        $key = $this->plainCertificate->getKey();
+        $crt = $$this->plainCertificate->getCrt();
+        $caBundle = $$this->plainCertificate->getCaBundle();
 
         if (!$crt || !$caBundle) {
-            throw new MissingRequiredInformation('The following fields are required for PKCS12: CRT, CA Bundle.');
+            throw new MissingRequiredInformation('The following fields are required for PEM: CRT, CA Bundle.');
         }
 
         // If there is a key, prepend the certificate content with the key.
@@ -27,13 +37,5 @@ class Pem implements FormatInterface
         }
 
         return $content;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getPlain(array $options) : Plain
-    {
-        // TODO: Implement getPlain() method.
     }
 }

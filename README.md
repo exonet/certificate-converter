@@ -34,11 +34,19 @@ $plain
 -----END CERTIFICATE-----
 ');
 
-// Convert the plain certificate to a combined PEM string.
+// Convert the plain certificate.
 $pem = $converter
     ->from($plain)
-    ->to(new Pem())
-    ->convertToString();
+    ->to(new Pem());
+    
+// Save as zip file:
+$pem->asZip('./');
+
+// Get an array with the certificate files:
+print_r($pem->asFiles());
+
+// Get the certificate as string:
+print_r($pem->asString());
 ```
 
 ## Change log
