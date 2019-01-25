@@ -25,9 +25,9 @@ class Plain extends AbstractFormat
     public function export() : array
     {
         return [
-            sprintf('%s.key', $this->certificateName) => $this->plainCertificate->getCrt(),
-            sprintf('%s.crt', $this->certificateName) => $this->plainCertificate->getKey(),
-            sprintf('%s.ca-bundle', $this->certificateName) => $this->plainCertificate->getCaBundle(),
+            $this->name.'.key' => $this->plainCertificate->getKey(),
+            $this->name.'.crt' => $this->plainCertificate->getCrt(),
+            $this->name.'.ca-bundle' => $this->plainCertificate->getCaBundle(),
         ];
     }
 

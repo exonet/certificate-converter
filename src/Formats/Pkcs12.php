@@ -13,7 +13,7 @@ class Pkcs12 extends AbstractFormat
     public function export() : array
     {
         return [
-            sprintf('%s.pfx', $this->certificateName), $this->toString(),
+            $this->name.'.pfx' => $this->toString(),
         ];
     }
 

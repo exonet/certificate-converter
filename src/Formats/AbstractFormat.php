@@ -12,19 +12,19 @@ abstract class AbstractFormat implements FormatInterface
     protected $plainCertificate;
 
     /**
-     * @var array List with options for the format.
+     * @var mixed[] List with options for the format.
      */
     protected $options = [];
 
     /**
      * @var string The certificate name.
      */
-    protected $certificateName = 'certificate';
+    protected $name = 'certificate';
 
     /**
      * AbstractFormat constructor.
      *
-     * @param array $options The (optional) array with options for this format.
+     * @param mixed[] $options The (optional) array with options for this format.
      */
     public function __construct(array $options = [])
     {
@@ -34,9 +34,9 @@ abstract class AbstractFormat implements FormatInterface
     /**
      * {@inheritdoc}
      */
-    public function setName(string $certificateName) : FormatInterface
+    public function setName(string $name) : FormatInterface
     {
-        $this->certificateName = $certificateName;
+        $this->name = $name;
 
         return $this;
     }
@@ -46,7 +46,7 @@ abstract class AbstractFormat implements FormatInterface
      */
     public function getName() : string
     {
-        return $this->certificateName;
+        return $this->name;
     }
 
     /**
@@ -70,9 +70,17 @@ abstract class AbstractFormat implements FormatInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function getOptions() : array
+    {
+        return $this->options;
+    }
+
+    /**
      * @inheritdoc
      *
-     * @throws NotImplementedException As long as this method is not implemented.
+     * @throws NotImplementedException When this method is not implemented.
      */
     public function getPlain() : Plain
     {

@@ -62,9 +62,16 @@ interface FormatInterface
     /**
      * Set the options for this format version.
      *
-     * @param array $options The options.
+     * @param mixed[] $options The options.
      *
      * @return $this The current format instance.
      */
     public function setOptions(array $options) : FormatInterface;
+
+    /**
+     * Get the options for this format version.
+     *
+     * @return mixed[] The options set for this format.
+     */
+    public function getOptions() : array;
 }

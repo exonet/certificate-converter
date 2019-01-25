@@ -13,7 +13,7 @@ class Pem extends AbstractFormat
     public function export() : array
     {
         return [
-            sprintf('%s.pem', $this->certificateName) => $this->toString(),
+            $this->name.'.pem' => $this->toString(),
         ];
     }
 
@@ -23,8 +23,8 @@ class Pem extends AbstractFormat
     public function toString() : string
     {
         $key = $this->plainCertificate->getKey();
-        $crt = $$this->plainCertificate->getCrt();
-        $caBundle = $$this->plainCertificate->getCaBundle();
+        $crt = $this->plainCertificate->getCrt();
+        $caBundle = $this->plainCertificate->getCaBundle();
 
         if (!$crt || !$caBundle) {
             throw new MissingRequiredInformation('The following fields are required for PEM: CRT, CA Bundle.');
