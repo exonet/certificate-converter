@@ -11,20 +11,13 @@
     ],
     "require": {
         "php": "~7.1",
-        "ext-openssl": "*"
+        "ext-openssl": "*",
+        "ext-zip": "*"
     },
     "autoload": {
         "psr-4": {
             "Exonet\\SslConverter\\": "src"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Exonet\\SslConverter\\": "tests"
-        }
-    },
-    "scripts": {
-        "test": "phpunit --testdox tests/"
     },
     "config": {
         "sort-packages": true

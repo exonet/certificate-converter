@@ -5,17 +5,27 @@ namespace Exonet\SslConverter\Formats;
 use Exonet\SslConverter\Exceptions\InvalidResource;
 use Exonet\SslConverter\Exceptions\MissingRequiredInformation;
 
-class Pkcs12 implements FormatInterface
+class Pkcs12 extends AbstractFormat
 {
     /**
      * @inheritdoc
      */
-    public function export(Plain $certificate, array $options) : string
+    public function export() : array
     {
-        $key = $certificate->getKey();
-        $crt = $certificate->getCrt();
-        $caBundle = $certificate->getCaBundle();
-        $password = isset($options['password']) ? $options['password'] : false;
+        return [
+            $this->name.'.pfx' => $this->toString(),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function toString() : string
+    {
+        $key = $this->plainCertificate->getKey();
+        $crt = $this->plainCertificate->getCrt();
+        $caBundle = $this->plainCertificate->getCaBundle();
+        $password = $this->options['password'] ?? false;
 
         if (!$key || !$crt || !$caBundle || !$password) {
             throw new MissingRequiredInformation('The following fields are required for PKCS12: key, CRT, CA Bundle, password.');
@@ -26,13 +36,5 @@ class Pkcs12 implements FormatInterface
         };
 
         return $pkc12;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getPlain(array $options) : Plain
-    {
-        // TODO: Implement getPlain() method.
     }
 }

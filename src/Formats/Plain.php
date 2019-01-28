@@ -2,7 +2,7 @@
 
 namespace Exonet\SslConverter\Formats;
 
-class Plain implements FormatInterface
+class Plain extends AbstractFormat
 {
     /**
      * @var string The certificate string, typically the contents of the '.crt' file.
@@ -20,17 +20,29 @@ class Plain implements FormatInterface
     protected $caBundle;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function export(Plain $certificate, array $options) : string
+    public function export() : array
     {
-        return $certificate->getCrt().$certificate->getKey().$certificate->getCaBundle();
+        return [
+            $this->name.'.key' => $this->plainCertificate->getKey(),
+            $this->name.'.crt' => $this->plainCertificate->getCrt(),
+            $this->name.'.ca-bundle' => $this->plainCertificate->getCaBundle(),
+        ];
     }
 
     /**
      * @inheritdoc
      */
-    public function getPlain(array $options) : self
+    public function toString() : string
+    {
+        return $this->plainCertificate->getCrt().$this->plainCertificate->getKey().$this->plainCertificate->getCaBundle();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getPlain() : self
     {
         return $this;
     }

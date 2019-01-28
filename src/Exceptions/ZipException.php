@@ -2,6 +2,6 @@
 
 namespace Exonet\SslConverter\Exceptions;
 
-class InvalidResource extends SslConverterException
+class ZipException extends SslConverterException
 {
 }
