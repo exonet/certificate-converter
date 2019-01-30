@@ -1,0 +1,25 @@
+{
+    "name": "exonet/ssl-converter",
+    "description": "PHP package to convert an SSL certificate to various formats (e.g PKC12, PEM).",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Exonet B.V.",
+            "email": "development@exonet.nl"
+        }
+    ],
+    "require": {
+        "php": "~7.1",
+        "ext-openssl": "*",
+        "ext-zip": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Exonet\\SslConverter\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
