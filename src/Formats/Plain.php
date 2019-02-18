@@ -24,11 +24,17 @@ class Plain extends AbstractFormat
      */
     public function export() : array
     {
-        return [
-            $this->name.'.key' => $this->plainCertificate->getKey(),
-            $this->name.'.crt' => $this->plainCertificate->getCrt(),
-            $this->name.'.ca-bundle' => $this->plainCertificate->getCaBundle(),
-        ];
+        $files = [];
+
+        // Add the key only if it is not empty.
+        if (!empty($this->plainCertificate->getKey())) {
+            $files[$this->name.'.key'] = $this->plainCertificate->getKey();
+        }
+
+        $files[$this->name.'.crt'] = $this->plainCertificate->getCrt();
+        $files[$this->name.'.ca-bundle'] = $this->plainCertificate->getCaBundle();
+
+        return $files;
     }
 
     /**
