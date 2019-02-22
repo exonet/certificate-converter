@@ -37,9 +37,9 @@ class Pem extends AbstractFormat
         $x509cert = str_replace(' ', '', $x509cert);
         $x509cert = "-----BEGIN CERTIFICATE-----\n".chunk_split($x509cert, 64, "\n")."-----END CERTIFICATE-----\n";
 
+        // If there is a key, prepend the certificate content with the key.
         $content = $key ? $key.$x509cert.$caBundle : $x509cert.$caBundle;
 
-        // If there is a key, prepend the certificate content with the key.
         if (!openssl_x509_read($content)) {
             throw new InvalidResource('Invalid certificate provided.');
         }
