@@ -30,16 +30,18 @@ class Pem extends AbstractFormat
             throw new MissingRequiredInformation('The following fields are required for PEM: CRT, CA Bundle.');
         }
 
+        $possibleWhitelines = ["\x0D", "\r", "\n", '\n', '\r'];
+
         // Strip all kind of (wrong) newlines, indentations, etc. and create a correct certificate from the CRT.
-        $x509cert = str_replace(array("\x0D", "\r", "\n", '\n', '\r'), '', $crt);
-        $x509cert = str_replace('-----BEGIN CERTIFICATE-----', "", $x509cert);
-        $x509cert = str_replace('-----END CERTIFICATE-----', "", $x509cert);
+        $x509cert = str_replace($possibleWhitelines, '', $crt);
+        $x509cert = str_replace('-----BEGIN CERTIFICATE-----', '', $x509cert);
+        $x509cert = str_replace('-----END CERTIFICATE-----', '', $x509cert);
         $x509cert = str_replace(' ', '', $x509cert);
         $x509cert = "-----BEGIN CERTIFICATE-----\n".chunk_split($x509cert, 64, "\n")."-----END CERTIFICATE-----\n";
 
         // Clean the newlines in the key.
         if ($key) {
-            $x509key = str_replace(["\x0D", "\r", "\n", '\n', '\r'], '', $key);
+            $x509key = str_replace($possibleWhitelines, '', $key);
             $x509key = str_replace('-----BEGIN PRIVATE KEY-----', "", $x509key);
             $x509key = str_replace('-----END PRIVATE KEY-----', "", $x509key);
             $x509key = str_replace(' ', '', $x509key);
