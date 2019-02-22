@@ -30,8 +30,16 @@ class Pem extends AbstractFormat
             throw new MissingRequiredInformation('The following fields are required for PEM: CRT, CA Bundle.');
         }
 
+        // Strip all kind of (wrong) newlines, indentations, etc. and create a correct certificate from the CRT.
+        $x509cert = str_replace(array("\x0D", "\r", "\n", '\n', '\r'), '', $crt);
+        $x509cert = str_replace('-----BEGIN CERTIFICATE-----', "", $x509cert);
+        $x509cert = str_replace('-----END CERTIFICATE-----', "", $x509cert);
+        $x509cert = str_replace(' ', '', $x509cert);
+        $x509cert = "-----BEGIN CERTIFICATE-----\n".chunk_split($x509cert, 64, "\n")."-----END CERTIFICATE-----\n";
+
+        $content = $key ? $key.$x509cert.$caBundle : $x509cert.$caBundle;
+
         // If there is a key, prepend the certificate content with the key.
-        $content = $key ? $key.$crt.$caBundle : $crt.$caBundle;
         if (!openssl_x509_read($content)) {
             throw new InvalidResource('Invalid certificate provided.');
         }
