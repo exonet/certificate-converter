@@ -9,7 +9,7 @@ Updates should follow the [Keep a CHANGELOG](http://keepachangelog.com/) princip
 ## [v0.0.3](https://github.com/exonet/ssl-converter/releases/tag/v0.0.3) - 2019-02-22
 [Compare v0.0.2 - v0.0.3](https://github.com/exonet/ssl-converter/compare/v0.0.2...v0.0.3)
 ### Fixed
-- When converting to PEM the CRT is now formatted correctly stripping all invalid newlines. 
+- When converting to PEM the CRT and key are now formatted correctly stripping all invalid newlines. 
 
 ## [v0.0.2](https://github.com/exonet/ssl-converter/releases/tag/v0.0.2) - 2019-02-18
 [Compare v0.0.1 - v0.0.2](https://github.com/exonet/ssl-converter/compare/v0.0.1...v0.0.2)
