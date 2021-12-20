@@ -8,9 +8,9 @@ use Exonet\SslConverter\Exceptions\MissingRequiredInformation;
 class Pkcs12 extends AbstractFormat
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function export() : array
+    public function export(): array
     {
         return [
             $this->name.'.pfx' => $this->toString(),
@@ -18,9 +18,9 @@ class Pkcs12 extends AbstractFormat
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function toString() : string
+    public function toString(): string
     {
         $key = $this->plainCertificate->getKey();
         $crt = $this->plainCertificate->getCrt();
@@ -33,7 +33,7 @@ class Pkcs12 extends AbstractFormat
 
         if (!openssl_pkcs12_export($crt, $pkc12, $key, $password, ['extracerts' => $caBundle])) {
             throw new InvalidResource('Invalid certificate provided.');
-        };
+        }
 
         return $pkc12;
     }

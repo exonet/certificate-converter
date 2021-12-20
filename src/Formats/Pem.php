@@ -8,9 +8,9 @@ use Exonet\SslConverter\Exceptions\MissingRequiredInformation;
 class Pem extends AbstractFormat
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function export() : array
+    public function export(): array
     {
         return [
             $this->name.'.pem' => $this->toString(),
@@ -18,9 +18,9 @@ class Pem extends AbstractFormat
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function toString() : string
+    public function toString(): string
     {
         $key = $this->plainCertificate->getKey();
         $crt = $this->plainCertificate->getCrt();

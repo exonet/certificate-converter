@@ -30,7 +30,7 @@ class Converter
      *
      * @return $this The current Converter instance.
      */
-    public function setName(string $certificateName) : self
+    public function setName(string $certificateName): self
     {
         $this->certificateName = $certificateName;
 
@@ -44,7 +44,7 @@ class Converter
      *
      * @return $this Instance of this class.
      */
-    public function from(FormatInterface $from) : self
+    public function from(FormatInterface $from): self
     {
         $this->from = $from;
 
@@ -58,7 +58,7 @@ class Converter
      *
      * @return $this Instance of this class
      */
-    public function to(FormatInterface $to) : self
+    public function to(FormatInterface $to): self
     {
         $this->to = $to;
 
@@ -68,12 +68,12 @@ class Converter
     /**
      * Convert the input format to the provided output format as a string.
      *
-     * @return string The converted format as a string that can be saved to a file.
-     *
-     * @throws Exceptions\InvalidResource When the provided certificate is invalid.
+     * @throws Exceptions\InvalidResource            When the provided certificate is invalid.
      * @throws Exceptions\MissingRequiredInformation When some required certificate data is missing.
+     *
+     * @return string The converted format as a string that can be saved to a file.
      */
-    public function asString() : string
+    public function asString(): string
     {
         return $this->to
             ->setName($this->certificateName)
@@ -85,12 +85,12 @@ class Converter
      * Convert the input format to the provided output format as an array of files. The array key is the file name, the
      * array value the file contents.
      *
-     * @return string[] The converted format as an array of files that can be saved to a file.
-     *
-     * @throws Exceptions\InvalidResource When the provided certificate is invalid.
+     * @throws Exceptions\InvalidResource            When the provided certificate is invalid.
      * @throws Exceptions\MissingRequiredInformation When some required certificate data is missing.
+     *
+     * @return string[] The converted format as an array of files that can be saved to a file.
      */
-    public function asFiles() : array
+    public function asFiles(): array
     {
         return $this->to
             ->setName($this->certificateName)
@@ -103,13 +103,13 @@ class Converter
      *
      * @param string $path The path where to store the zip file.
      *
-     * @return bool True when the zip is created and stored.
-     *
-     * @throws Exceptions\InvalidResource When the provided certificate is invalid.
+     * @throws Exceptions\InvalidResource            When the provided certificate is invalid.
      * @throws Exceptions\MissingRequiredInformation When some required certificate data is missing.
-     * @throws ZipException When the files can not be zipped.
+     * @throws ZipException                          When the files can not be zipped.
+     *
+     * @return bool True when the zip is created and stored.
      */
-    public function asZip(string $path) : bool
+    public function asZip(string $path): bool
     {
         $filename = sprintf('%s/%s.zip', rtrim($path, '/'), $this->certificateName);
 
