@@ -34,7 +34,7 @@ abstract class AbstractFormat implements FormatInterface
     /**
      * {@inheritdoc}
      */
-    public function setName(string $name) : FormatInterface
+    public function setName(string $name): FormatInterface
     {
         $this->name = $name;
 
@@ -44,7 +44,7 @@ abstract class AbstractFormat implements FormatInterface
     /**
      * {@inheritdoc}
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -52,7 +52,7 @@ abstract class AbstractFormat implements FormatInterface
     /**
      * {@inheritdoc}
      */
-    public function setPlain(Plain $plain) : FormatInterface
+    public function setPlain(Plain $plain): FormatInterface
     {
         $this->plainCertificate = $plain;
 
@@ -62,7 +62,7 @@ abstract class AbstractFormat implements FormatInterface
     /**
      * {@inheritdoc}
      */
-    public function setOptions(array $options) : FormatInterface
+    public function setOptions(array $options): FormatInterface
     {
         $this->options = $options;
 
@@ -72,17 +72,17 @@ abstract class AbstractFormat implements FormatInterface
     /**
      * {@inheritdoc}
      */
-    public function getOptions() : array
+    public function getOptions(): array
     {
         return $this->options;
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @throws NotImplementedException When this method is not implemented.
      */
-    public function getPlain() : Plain
+    public function getPlain(): Plain
     {
         throw new NotImplementedException('The [getPlain] method is not implemented for this format.');
     }

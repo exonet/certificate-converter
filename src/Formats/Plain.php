@@ -22,7 +22,7 @@ class Plain extends AbstractFormat
     /**
      * {@inheritdoc}
      */
-    public function export() : array
+    public function export(): array
     {
         $files = [];
 
@@ -38,17 +38,17 @@ class Plain extends AbstractFormat
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function toString() : string
+    public function toString(): string
     {
         return $this->plainCertificate->getCrt().$this->plainCertificate->getKey().$this->plainCertificate->getCaBundle();
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function getPlain() : self
+    public function getPlain(): self
     {
         return $this;
     }
@@ -58,7 +58,7 @@ class Plain extends AbstractFormat
      *
      * @return string The crt.
      */
-    public function getCrt() : ?string
+    public function getCrt(): ?string
     {
         return $this->crt;
     }
@@ -70,7 +70,7 @@ class Plain extends AbstractFormat
      *
      * @return $this The current instance of this class.
      */
-    public function setCrt(string $crt) : self
+    public function setCrt(string $crt): self
     {
         $this->crt = $crt;
 
@@ -82,7 +82,7 @@ class Plain extends AbstractFormat
      *
      * @return string The key.
      */
-    public function getKey() : ?string
+    public function getKey(): ?string
     {
         return $this->key;
     }
@@ -94,7 +94,7 @@ class Plain extends AbstractFormat
      *
      * @return $this The current instance of this class.
      */
-    public function setKey(string $key) : self
+    public function setKey(string $key): self
     {
         $this->key = $key;
 
@@ -106,7 +106,7 @@ class Plain extends AbstractFormat
      *
      * @return string The CA bundle.
      */
-    public function getCaBundle() : ?string
+    public function getCaBundle(): ?string
     {
         return $this->caBundle;
     }
@@ -118,7 +118,7 @@ class Plain extends AbstractFormat
      *
      * @return $this The current instance of this class.
      */
-    public function setCaBundle(string $caBundle) : self
+    public function setCaBundle(string $caBundle): self
     {
         $this->caBundle = $caBundle;
 
