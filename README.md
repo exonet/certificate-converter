@@ -38,7 +38,7 @@ $plain
 $pem = $converter
     ->from($plain)
     ->to(new Pem());
-    
+
 // Save as zip file:
 $pem->asZip('./');
 
@@ -51,4 +51,3 @@ print_r($pem->asString());
 
 ## Change log
 Please see [releases](https://github.com/exonet/ssl-converter/releases) for more information on what has changed recently.
-
