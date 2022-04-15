@@ -1,9 +1,9 @@
 <?php
 
-namespace Exonet\SslConverter\Exceptions;
+namespace Exonet\CertificateConverter\Exceptions;
 
 use Exception;
 
-class SslConverterException extends Exception
+class CertificateConverterException extends Exception
 {
 }

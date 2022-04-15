@@ -1,7 +1,7 @@
 <?php
 
-namespace Exonet\SslConverter\Exceptions;
+namespace Exonet\CertificateConverter\Exceptions;
 
-class NotImplementedException extends SslConverterException
+class NotImplementedException extends CertificateConverterException
 {
 }

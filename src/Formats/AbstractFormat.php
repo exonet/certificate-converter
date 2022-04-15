@@ -1,8 +1,8 @@
 <?php
 
-namespace Exonet\SslConverter\Formats;
+namespace Exonet\CertificateConverter\Formats;
 
-use Exonet\SslConverter\Exceptions\NotImplementedException;
+use Exonet\CertificateConverter\Exceptions\NotImplementedException;
 
 abstract class AbstractFormat implements FormatInterface
 {

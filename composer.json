@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Exonet\\SslConverter\\": "src"
+            "Exonet\\CertificateConverter\\": "src"
         }
     },
     "config": {

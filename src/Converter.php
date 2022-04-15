@@ -1,9 +1,9 @@
 <?php
 
-namespace Exonet\SslConverter;
+namespace Exonet\CertificateConverter;
 
-use Exonet\SslConverter\Exceptions\ZipException;
-use Exonet\SslConverter\Formats\FormatInterface;
+use Exonet\CertificateConverter\Exceptions\ZipException;
+use Exonet\CertificateConverter\Formats\FormatInterface;
 use ZipArchive;
 
 class Converter

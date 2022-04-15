@@ -1,9 +1,9 @@
 <?php
 
-namespace Exonet\SslConverter\Formats;
+namespace Exonet\CertificateConverter\Formats;
 
-use Exonet\SslConverter\Exceptions\InvalidResource;
-use Exonet\SslConverter\Exceptions\MissingRequiredInformation;
+use Exonet\CertificateConverter\Exceptions\InvalidResource;
+use Exonet\CertificateConverter\Exceptions\MissingRequiredInformation;
 
 class Pem extends AbstractFormat
 {

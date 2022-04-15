@@ -1,6 +1,6 @@
 <?php
 
-namespace Exonet\SslConverter\Formats;
+namespace Exonet\CertificateConverter\Formats;
 
 class Plain extends AbstractFormat
 {

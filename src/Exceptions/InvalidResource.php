@@ -1,7 +1,7 @@
 <?php
 
-namespace Exonet\SslConverter\Exceptions;
+namespace Exonet\CertificateConverter\Exceptions;
 
-class InvalidResource extends SslConverterException
+class InvalidResource extends CertificateConverterException
 {
 }

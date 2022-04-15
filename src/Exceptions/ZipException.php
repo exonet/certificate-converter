@@ -1,7 +1,7 @@
 <?php
 
-namespace Exonet\SslConverter\Exceptions;
+namespace Exonet\CertificateConverter\Exceptions;
 
-class ZipException extends SslConverterException
+class ZipException extends CertificateConverterException
 {
 }
