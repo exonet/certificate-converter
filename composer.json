@@ -1,5 +1,5 @@
 {
-    "name": "exonet/ssl-converter",
+    "name": "exonet/certificate-converter",
     "description": "PHP package to convert an SSL certificate to various formats (e.g PKC12, PEM).",
     "type": "library",
     "license": "MIT",
