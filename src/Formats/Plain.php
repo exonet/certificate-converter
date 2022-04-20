@@ -27,12 +27,12 @@ class Plain extends AbstractFormat
         $files = [];
 
         // Add the key only if it is not empty.
-        if (!empty($this->plainCertificate->getKey())) {
-            $files[$this->name.'.key'] = $this->plainCertificate->getKey();
+        if (!empty($this->getPlain()->getKey())) {
+            $files[$this->name.'.key'] = $this->getPlain()->getKey();
         }
 
-        $files[$this->name.'.crt'] = $this->plainCertificate->getCrt();
-        $files[$this->name.'.ca-bundle'] = $this->plainCertificate->getCaBundle();
+        $files[$this->name.'.crt'] = $this->getPlain()->getCrt();
+        $files[$this->name.'.ca-bundle'] = $this->getPlain()->getCaBundle();
 
         return $files;
     }
@@ -42,7 +42,7 @@ class Plain extends AbstractFormat
      */
     public function toString(): string
     {
-        return $this->plainCertificate->getCrt().$this->plainCertificate->getKey().$this->plainCertificate->getCaBundle();
+        return $this->getPlain()->getCrt().$this->getPlain()->getKey().$this->getPlain()->getCaBundle();
     }
 
     /**
@@ -72,7 +72,7 @@ class Plain extends AbstractFormat
      */
     public function setCrt(string $crt): self
     {
-        $this->crt = $crt;
+        $this->crt = $this->cleanSection($crt);
 
         return $this;
     }
@@ -96,7 +96,7 @@ class Plain extends AbstractFormat
      */
     public function setKey(string $key): self
     {
-        $this->key = $key;
+        $this->key = $this->cleanSection($key, 'PRIVATE KEY');
 
         return $this;
     }
@@ -120,7 +120,11 @@ class Plain extends AbstractFormat
      */
     public function setCaBundle(string $caBundle): self
     {
-        $this->caBundle = $caBundle;
+        $bundles = array_filter(explode('-----BEGIN CERTIFICATE-----', $caBundle));
+
+        $cleanBundles = array_map(fn ($bundle): string => $this->cleanSection($bundle), $bundles);
+
+        $this->caBundle = implode('', $cleanBundles);
 
         return $this;
     }
