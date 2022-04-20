@@ -6,11 +6,10 @@ on:
     branches:
       - master
   pull_request:
-    branches:
-      - master
+    types: [opened, edited, reopend, synchronize]
 
 jobs:
-  check-code-style:
+  lint:
     name: Check code style
     runs-on: ubuntu-latest
     if: ${{ github.actor != 'dependabot[bot]' }}
@@ -24,7 +23,7 @@ jobs:
       - name: Setup PHP with PECL extension
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.0'
+          php-version: '8.1'
           extensions: json, openssl, zlib, zip
 
       - name: Composer install
@@ -33,7 +32,7 @@ jobs:
           composer-options: "--no-scripts"
 
       - name: Run php-cs-fixer
-        run: ./vendor/bin/php-cs-fixer fix
+        run: vendor/bin/php-cs-fixer fix
 
       - name: Apply php-cs-fixer changes
         uses: stefanzweifel/git-auto-commit-action@v4
