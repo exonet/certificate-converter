@@ -1,7 +1,7 @@
 <?php
 
-namespace Exonet\SslConverter\Exceptions;
+namespace Exonet\CertificateConverter\Exceptions;
 
-class MissingRequiredInformation extends SslConverterException
+class MissingRequiredInformation extends CertificateConverterException
 {
 }
