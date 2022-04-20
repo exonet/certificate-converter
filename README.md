@@ -18,7 +18,7 @@ The example below shows how combine separate contents of a certificate to a comb
 // Initialise a new certificate converter.
 $converter = new Converter();
 
-// Setup the plain format class that should be converter.
+// Setup the plain format class that should be converted.
 $plain = new Plain();
 $plain
     ->setKey('-----BEGIN PRIVATE KEY-----
@@ -34,12 +34,12 @@ $plain
 -----END CERTIFICATE-----
 ');
 
-// Convert the plain certificate.
+// Convert the plain certificate to PEM.
 $pem = $converter
     ->from($plain)
     ->to(new Pem());
 
-// Save as zip file:
+// Save as zip file.
 $pem->asZip('./');
 
 // Get an array with the certificate files:
