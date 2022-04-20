@@ -53,8 +53,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+    - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: json, openssl, zlib, zip
+
       - name: Composer install
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v2
 
       - name: Run PHPUnit tests
         run: vendor/bin/phpunit --testdox
