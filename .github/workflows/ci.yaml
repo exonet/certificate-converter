@@ -59,7 +59,7 @@ jobs:
           extensions: json, openssl, zlib, zip
 
       - name: Composer install
-        uses: php-actions/composer@v2
+        uses: php-actions/composer@v6
 
       - name: Run PHPUnit tests
         run: vendor/bin/phpunit --testdox
