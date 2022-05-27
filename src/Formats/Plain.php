@@ -54,6 +54,18 @@ class Plain extends AbstractFormat
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function setPlain(Plain $plain): FormatInterface
+    {
+        $this->crt = $plain->getCrt();
+        $this->key = $plain->getKey();
+        $this->caBundle = $plain->getCaBundle();
+
+        return $this;
+    }
+
+    /**
      * Get the crt.
      *
      * @return string The crt.
