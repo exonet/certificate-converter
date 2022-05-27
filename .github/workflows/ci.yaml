@@ -9,6 +9,33 @@ on:
     types: [opened, edited, reopend, synchronize]
 
 jobs:
+  test:
+    name: PHPUnit (PHP ${{ matrix.php-versions }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ["7.4", "8.0", "8.1"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: json, openssl, zlib, zip
+
+      - name: Composer install
+        uses: ramsey/composer-install@v2
+        with:
+          composer-options: "--no-scripts"
+
+      - name: Run unit tests
+        run: vendor/bin/phpunit --testdox
+
   lint:
     name: Check code style
     runs-on: ubuntu-latest
@@ -39,29 +66,3 @@ jobs:
         with:
           commit_message: Apply php-cs-fixer changes
 
-  phpunit:
-    name: PHPUnit (PHP ${{ matrix.php-versions }})
-    runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        php-versions: ['7.4', '8.0', '8.1']
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: json, openssl, zlib, zip
-
-      - name: Composer install
-        uses: ramsey/composer-install@v2
-        with:
-          composer-options: "--no-scripts"
-
-      - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --testdox
