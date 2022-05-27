@@ -68,4 +68,21 @@ class ConverterTest extends TestCase
 
         unlink(__DIR__.'/example.com.zip');
     }
+
+    public function testPlainToPlainString()
+    {
+        $plain = (new Plain())
+            ->setCrt(TestCertificate::CRT)
+            ->setKey(TestCertificate::KEY)
+            ->setCaBundle(TestCertificate::CA_BUNDLE);
+
+        $converter = (new Converter())
+            ->from($plain)
+            ->to(new Plain());
+
+        $this->assertSame(
+            TestCertificate::CRT.TestCertificate::KEY.TestCertificate::CA_BUNDLE,
+            $converter->asString()
+        );
+    }
 }
