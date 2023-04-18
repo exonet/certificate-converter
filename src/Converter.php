@@ -4,7 +4,6 @@ namespace Exonet\CertificateConverter;
 
 use Exonet\CertificateConverter\Exceptions\ZipException;
 use Exonet\CertificateConverter\Formats\FormatInterface;
-use ZipArchive;
 
 class Converter
 {
@@ -126,8 +125,8 @@ class Converter
             ->setPlain($this->from->getPlain())
             ->export();
 
-        $zip = new ZipArchive();
-        $zip->open($filename, ZipArchive::CREATE);
+        $zip = new \ZipArchive();
+        $zip->open($filename, \ZipArchive::CREATE);
         foreach ($files as $name => $content) {
             $zip->addFromString($name, $content);
         }

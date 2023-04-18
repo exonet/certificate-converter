@@ -2,8 +2,6 @@
 
 namespace Exonet\CertificateConverter\Exceptions;
 
-use Exception;
-
-class CertificateConverterException extends Exception
+class CertificateConverterException extends \Exception
 {
 }
