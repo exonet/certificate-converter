@@ -2,6 +2,4 @@
 
 namespace Exonet\CertificateConverter\Exceptions;
 
-class InvalidResource extends CertificateConverterException
-{
-}
+class InvalidResource extends CertificateConverterException {}

@@ -2,6 +2,4 @@
 
 namespace Exonet\CertificateConverter\Exceptions;
 
-class NotImplementedException extends CertificateConverterException
-{
-}
+class NotImplementedException extends CertificateConverterException {}

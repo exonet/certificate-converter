@@ -2,6 +2,4 @@
 
 namespace Exonet\CertificateConverter\Exceptions;
 
-class ZipException extends CertificateConverterException
-{
-}
+class ZipException extends CertificateConverterException {}

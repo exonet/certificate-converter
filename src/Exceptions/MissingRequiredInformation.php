@@ -2,6 +2,4 @@
 
 namespace Exonet\CertificateConverter\Exceptions;
 
-class MissingRequiredInformation extends CertificateConverterException
-{
-}
+class MissingRequiredInformation extends CertificateConverterException {}
