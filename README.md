@@ -39,8 +39,8 @@ $pem = $converter
     ->from($plain)
     ->to(new Pem());
 
-// Save as zip file.
-$pem->asZip('./');
+// Get certificate files as a zip file.
+$zipFile = $pem->asZip(); // SplTempFileObject
 
 // Get an array with the certificate files:
 print_r($pem->asFiles());
