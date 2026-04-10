@@ -98,36 +98,22 @@ class Converter
     }
 
     /**
-     * Convert the input format to the provided output format and save the file (or files) as zip.
-     *
-     * @param string $path The path where to store the zip file.
+     * Convert the input format to the provided output format and zip the files.
      *
      * @throws Exceptions\InvalidResource            When the provided certificate is invalid.
      * @throws Exceptions\MissingRequiredInformation When some required certificate data is missing.
      * @throws ZipException                          When the files can not be zipped.
      *
-     * @return bool True when the zip is created and stored.
+     * @return \SplTempFileObject The zip file.
      */
-    public function asZip(string $path): bool
+    public function asZip(): \SplTempFileObject
     {
-        $filename = sprintf('%s/%s.zip', rtrim($path, '/'), $this->certificateName);
-
-        if (!is_dir($path) || !is_writable($path)) {
-            throw new ZipException(sprintf('The directory [%s] is does not exists or is not writable.', $path));
-        }
-
-        if (is_file($filename) && !is_writable($filename)) {
-            throw new ZipException(sprintf('The file [%s] already exists and is not writable.', $filename));
-        }
-
-        $files = $this->to
-            ->setName($this->certificateName)
-            ->setPlain($this->from->getPlain())
-            ->export();
+        $tempPath = tempnam(sys_get_temp_dir(), 'zip_');
 
         $zip = new \ZipArchive();
-        $zip->open($filename, \ZipArchive::CREATE);
-        foreach ($files as $name => $content) {
+        $zip->open($tempPath, \ZipArchive::CREATE);
+
+        foreach ($this->asFiles() as $name => $content) {
             $zip->addFromString($name, $content);
         }
 
@@ -137,6 +123,10 @@ class Converter
 
         $zip->close();
 
-        return file_exists($filename);
+        $zipTempFile = new \SplTempFileObject();
+        $zipTempFile->fwrite(file_get_contents($tempPath));
+        $zipTempFile->rewind();
+
+        return $zipTempFile;
     }
 }
