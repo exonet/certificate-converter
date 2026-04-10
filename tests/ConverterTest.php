@@ -62,11 +62,9 @@ class ConverterTest extends TestCase
             ->setName('example.com')
             ->to(new Pem());
 
-        $converter->asZip(__DIR__);
+        $zipFile = $converter->asZip();
 
-        $this->assertTrue(file_exists(__DIR__.'/example.com.zip'));
-
-        unlink(__DIR__.'/example.com.zip');
+        $this->assertInstanceOf(\SplTempFileObject::class, $zipFile);
     }
 
     public function testPlainToPlainString()
