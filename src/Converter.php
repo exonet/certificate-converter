@@ -111,7 +111,7 @@ class Converter
         $tempPath = tempnam(sys_get_temp_dir(), 'zip_');
 
         $zip = new \ZipArchive();
-        $zip->open($tempPath, \ZipArchive::CREATE);
+        $zip->open($tempPath, \ZipArchive::OVERWRITE);
 
         foreach ($this->asFiles() as $name => $content) {
             $zip->addFromString($name, $content);
@@ -126,6 +126,8 @@ class Converter
         $zipTempFile = new \SplTempFileObject();
         $zipTempFile->fwrite(file_get_contents($tempPath));
         $zipTempFile->rewind();
+
+        unlink($tempPath);
 
         return $zipTempFile;
     }
